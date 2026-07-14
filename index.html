@@ -144,14 +144,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   position:fixed;
   top:0; left:0; right:0;
   z-index:1000;
-  background:rgba(10,14,23,0.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid transparent;
-  transition:border-color 0.3s ease, background 0.3s ease;
+  background:rgba(10,14,23,0.78);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  box-shadow:0 8px 30px rgba(0,0,0,0.16);
+  transition:border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 .navbar.scrolled{
   border-bottom:1px solid var(--border);
   background:rgba(10,14,23,0.96);
+  box-shadow:0 10px 35px rgba(0,0,0,0.24);
 }
 .nav-inner{
   display:flex;
@@ -164,9 +166,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size:15px;
   font-weight:600;
   color:var(--text);
-  display:flex;
+  display:inline-flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
+  padding:8px 12px;
+  border:1px solid rgba(232,147,74,0.18);
+  border-radius:999px;
+  background:rgba(232,147,74,0.06);
 }
 .logo .dot{ color:var(--copper); }
 .logo .brackets{ color:var(--text-dim); }
@@ -218,9 +224,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size:11px;
   letter-spacing:0.08em;
   text-transform:uppercase;
-  padding:8px 10px;
+  padding:8px 12px;
   cursor:pointer;
   transition:all 0.2s ease;
+  border-radius:999px;
 }
 .lang-toggle:hover, .theme-toggle:hover{
   border-color:var(--copper);
@@ -233,7 +240,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size:12px;
   border:1px solid var(--copper-dim);
   color:var(--copper);
-  padding:9px 18px;
+  padding:10px 16px;
   transition:all 0.2s ease;
   white-space:nowrap;
   background:transparent;
@@ -243,6 +250,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  border-radius:999px;
 }
 .nav-cta:hover{ background:var(--copper); color:#0A0E17; border-color:var(--copper); }
 
@@ -261,7 +269,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .nav-links{
     position:fixed;
     top:76px; left:0; right:0;
-    background:var(--bg);
+    background:rgba(10,14,23,0.97);
     border-bottom:1px solid var(--border);
     flex-direction:column;
     align-items:flex-start;
@@ -817,14 +825,14 @@ footer{
       <li><a href="#contact" data-num="06" data-i18n="navContact">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <button type="button" class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button>
-      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <button type="button" class="lang-toggle" id="langToggle" data-i18n-aria="langToggleAria" aria-label="Switch language">EN</button>
+      <button type="button" class="theme-toggle" id="themeToggle" data-i18n-aria="themeToggleAria" aria-label="Toggle theme">
         <i class="fa-solid fa-moon" id="themeIcon"></i>
         <span data-i18n="themeLabel">Mode sombre</span>
       </button>
       <a id="cvDownloadBtn" class="nav-cta" href="Mahele CV.pdf" target="_blank" rel="noopener" download data-i18n="cvBtn">Télécharger le CV</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+    <button class="nav-toggle" id="navToggle" data-i18n-aria="navMenuAria" aria-label="Ouvrir le menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -842,7 +850,6 @@ footer{
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-diagram-project"></i> <span data-i18n="heroProjectBtn">Voir mes projets</span></a>
         <a href="#contact" class="btn btn-outline"><i class="fa-regular fa-paper-plane"></i> <span data-i18n="heroContactBtn">Me contacter</span></a>
-        <a href="https://github.com/gurvan-dev77" target="_blank" rel="noopener" class="btn btn-outline"><i class="fa-brands fa-github"></i> <span data-i18n="heroGitHubBtn">GitHub</span></a>
       </div>
       <div class="hero-stats reveal reveal-delay-3">
         <div class="hero-stat"><b>3+</b><span data-i18n="heroStatProjects">Projets réalisés</span></div>
@@ -860,13 +867,13 @@ footer{
         </div>
       </div>
       <div class="photo-caption">
-        <span><span class="blip"></span>STATUT : OUVERT AUX OPPORTUNITÉS</span>
-        <span>REF. MHG-01</span>
+        <span><span class="blip"></span><span data-i18n="heroStatus">STATUT : OUVERT AUX OPPORTUNITÉS</span></span>
+        <span data-i18n="heroRef">REF. MHG-01</span>
       </div>
     </div>
   </div>
 
-  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+  <div class="scroll-cue"><span data-i18n="heroScrollCue">SCROLL</span><span class="line"></span></div>
 </section>
 
 <!-- ============================================================
@@ -881,23 +888,22 @@ footer{
     <div class="about-grid">
       <div class="about-card reveal">
         <div class="row"><span class="k" data-i18n="aboutNameLabel">NOM</span><span class="v">Mahele Honoré Gurvan</span></div>
-        <div class="row"><span class="k" data-i18n="aboutLevelLabel">NIVEAU</span><span class="v">Licence 3 — Génie Logiciel</span></div>
-        <div class="row"><span class="k" data-i18n="aboutSchoolLabel">ÉTABLISSEMENT</span><span class="v">Institut Africain d'Informatique</span></div>
-        <div class="row"><span class="k" data-i18n="aboutLocationLabel">LOCALISATION</span><span class="v">Yaoundé, Cameroun</span></div>
-        <div class="row"><span class="k" data-i18n="aboutLanguagesLabel">LANGUES</span><span class="v">Français, Anglais</span></div>
+        <div class="row"><span class="k" data-i18n="aboutLevelLabel">NIVEAU</span><span class="v" data-i18n="aboutLevelValue">Licence 3 — Génie Logiciel</span></div>
+        <div class="row"><span class="k" data-i18n="aboutSchoolLabel">ÉTABLISSEMENT</span><span class="v" data-i18n="aboutSchoolValue">Institut Africain d'Informatique</span></div>
+        <div class="row"><span class="k" data-i18n="aboutLocationLabel">LOCALISATION</span><span class="v" data-i18n="aboutLocationValue">Yaoundé, Cameroun</span></div>
+        <div class="row"><span class="k" data-i18n="aboutLanguagesLabel">LANGUES</span><span class="v" data-i18n="aboutLanguagesValue">Français, Anglais</span></div>
         <div class="row"><span class="k" data-i18n="aboutAvailabilityLabel">DISPONIBILITÉ</span><span class="v" data-i18n="aboutAvailabilityValue">Stage — dès maintenant</span></div>
       </div>
 
       <div class="about-text reveal reveal-delay-1">
-        <p>Je suis <strong>Mahele Honoré Gurvan</strong>, étudiant en Licence 3 Génie Logiciel à l'Institut Africain d'Informatique (IAI), à Yaoundé. Le développement logiciel et l'intelligence artificielle m'intéressent particulièrement : j'aime comprendre comment une idée devient une application utilisable, de la modélisation à la mise en production.</p>
-        <p>Mes bases en <strong>Python, Java et SQL</strong> se sont construites à travers des stages concrets — gestion de bases de données pour un port autonome, administration de recettes municipales, développement de projets personnels — et non uniquement en salle de classe.</p>
-        <p>Je recherche aujourd'hui un <strong>stage</strong> qui me permette de mettre ces compétences au service de projets réels, avec la rigueur et l'adaptabilité que mes expériences m'ont apprises.</p>
+        <p data-i18n-html="aboutParagraph1">Je suis <strong>Mahele Honoré Gurvan</strong>, étudiant en Licence 3 Génie Logiciel à l'Institut Africain d'Informatique (IAI), à Yaoundé. Le développement logiciel et l'intelligence artificielle m'intéressent particulièrement : j'aime comprendre comment une idée devient une application utilisable, de la modélisation à la mise en production.</p>
+        <p data-i18n-html="aboutParagraph2">Mes bases en <strong>Python, Java et SQL</strong> se sont construites à travers des stages concrets — gestion de bases de données pour un port autonome, administration de recettes municipales, développement de projets personnels — et non uniquement en salle de classe.</p>
         <div class="interest-tags">
-          <span><i class="fa-solid fa-users"></i>&nbsp; Esprit d'équipe</span>
-          <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Analyse & résolution</span>
-          <span><i class="fa-solid fa-dumbbell"></i>&nbsp; Sport</span>
-          <span><i class="fa-solid fa-book"></i>&nbsp; Lecture</span>
-          <span><i class="fa-solid fa-lightbulb"></i>&nbsp; Innovation</span>
+          <span><i class="fa-solid fa-users"></i>&nbsp; <span data-i18n="aboutInterestTeam">Esprit d'équipe</span></span>
+          <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; <span data-i18n="aboutInterestAnalysis">Analyse & résolution</span></span>
+          <span><i class="fa-solid fa-dumbbell"></i>&nbsp; <span data-i18n="aboutInterestSport">Sport</span></span>
+          <span><i class="fa-solid fa-book"></i>&nbsp; <span data-i18n="aboutInterestRead">Lecture</span></span>
+          <span><i class="fa-solid fa-lightbulb"></i>&nbsp; <span data-i18n="aboutInterestInnovation">Innovation</span></span>
         </div>
       </div>
     </div>
@@ -909,40 +915,40 @@ footer{
      ============================================================ -->
 <section class="section-pad" id="skills" style="background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
-    <span class="eyebrow reveal">FIG. 02 <span class="tag">— Compétences</span></span>
-    <h2 class="section-title reveal">Ce que je maîtrise</h2>
-    <p class="section-sub reveal">Des fondations solides en programmation et en conception de bases de données, complétées par une pratique régulière du développement web.</p>
+    <span class="eyebrow reveal">FIG. 02 <span class="tag">— <span data-i18n="skillsTag">Compétences</span></span></span>
+    <h2 class="section-title reveal" data-i18n="skillsTitle">Ce que je maîtrise</h2>
+    <p class="section-sub reveal" data-i18n="skillsSubtitle">Des fondations solides en programmation et en conception de bases de données, complétées par une pratique régulière du développement web.</p>
 
     <div class="skills-grid">
       <div class="reveal">
-        <div class="skill-group-title"><i class="fa-solid fa-code"></i> Langages & Web</div>
+        <div class="skill-group-title"><i class="fa-solid fa-code"></i> <span data-i18n="skillsGroupWeb">Langages & Web</span></div>
         <div class="skill-item">
-          <div class="skill-top"><span>Python</span><span class="lvl">AVANCÉ</span></div>
-          <div class="skill-bar" data-width="88"><span></span></div>
+          <div class="skill-top"><span>Python</span><span class="lvl" data-i18n="skillLevelAdvanced">AVANCÉ</span></div>
+          <div class="skill-bar" data-width="90"><span></span></div>
         </div>
         <div class="skill-item">
-          <div class="skill-top"><span>Java</span><span class="lvl">INTERMÉDIAIRE+</span></div>
-          <div class="skill-bar" data-width="75"><span></span></div>
+          <div class="skill-top"><span>Java</span><span class="lvl" data-i18n="skillLevelIntermediatePlus">INTERMÉDIAIRE+</span></div>
+          <div class="skill-bar" data-width="65"><span></span></div>
         </div>
         <div class="skill-item">
-          <div class="skill-top"><span>HTML / CSS / JavaScript</span><span class="lvl">INTERMÉDIAIRE</span></div>
-          <div class="skill-bar" data-width="70"><span></span></div>
+          <div class="skill-top"><span>HTML / CSS / JavaScript</span><span class="lvl" data-i18n="skillLevelIntermediate">AVANCÉ</span></div>
+          <div class="skill-bar" data-width="87"><span></span></div>
         </div>
       </div>
 
       <div class="reveal reveal-delay-1">
-        <div class="skill-group-title"><i class="fa-solid fa-database"></i> Données & Conception</div>
+        <div class="skill-group-title"><i class="fa-solid fa-database"></i> <span data-i18n="skillsGroupData">Données & Conception</span></div>
         <div class="skill-item">
-          <div class="skill-top"><span>MySQL / PostgreSQL</span><span class="lvl">AVANCÉ</span></div>
-          <div class="skill-bar" data-width="85"><span></span></div>
+          <div class="skill-top"><span>MySQL / PostgreSQL</span><span class="lvl" data-i18n="skillLevelAdvanced">INTERMEDIAIRE</span></div>
+          <div class="skill-bar" data-width="70"><span></span></div>
         </div>
         <div class="skill-item">
-          <div class="skill-top"><span>UML & Merise</span><span class="lvl">INTERMÉDIAIRE+</span></div>
-          <div class="skill-bar" data-width="72"><span></span></div>
+          <div class="skill-top"><span>UML & Merise</span><span class="lvl" data-i18n="skillLevelIntermediatePlus">AVANCÉ+</span></div>
+          <div class="skill-bar" data-width="90"><span></span></div>
         </div>
         <div class="skill-item">
-          <div class="skill-top"><span>Git & Outils IA</span><span class="lvl">INTERMÉDIAIRE</span></div>
-          <div class="skill-bar" data-width="68"><span></span></div>
+          <div class="skill-top"><span>Git & Outils IA</span><span class="lvl" data-i18n="skillLevelIntermediate">INTERMÉDIAIRE</span></div>
+          <div class="skill-bar" data-width="60"><span></span></div>
         </div>
       </div>
     </div>
@@ -954,10 +960,10 @@ footer{
      ============================================================ -->
 <section class="stats-band">
   <div class="container stats-grid">
-    <div class="stat reveal"><b data-count="3">0</b><span>Grands projets réalisés</span></div>
-    <div class="stat reveal reveal-delay-1"><b data-count="12">0</b><span>Technologies maîtrisées</span></div>
-    <div class="stat reveal reveal-delay-2"><b data-count="3">0</b><span>Stages effectués</span></div>
-    <div class="stat reveal reveal-delay-3"><b data-count="100">0</b><span>% Motivation</span></div>
+    <div class="stat reveal"><b data-count="3">0</b><span data-i18n="statsProjects">Grands projets réalisés</span></div>
+    <div class="stat reveal reveal-delay-1"><b data-count="12">0</b><span data-i18n="statsTech">Technologies maîtrisées</span></div>
+    <div class="stat reveal reveal-delay-2"><b data-count="3">0</b><span data-i18n="statsStages">Stages effectués</span></div>
+    <div class="stat reveal reveal-delay-3"><b data-count="100">0</b><span data-i18n="statsMotivation">% Motivation</span></div>
   </div>
 </section>
 
@@ -966,57 +972,57 @@ footer{
      ============================================================ -->
 <section class="section-pad" id="formation">
   <div class="container">
-    <span class="eyebrow reveal">FIG. 03 <span class="tag">— Parcours</span></span>
-    <h2 class="section-title reveal">Formation & Expériences</h2>
-    <p class="section-sub reveal">Mon itinéraire académique et les stages qui l'ont accompagné.</p>
+    <span class="eyebrow reveal">FIG. 03 <span class="tag">— <span data-i18n="formationTag">Parcours</span></span></span>
+    <h2 class="section-title reveal" data-i18n="formationTitle">Formation & Expériences</h2>
+    <p class="section-sub reveal" data-i18n="formationSubtitle">Mon itinéraire académique et les stages qui l'ont accompagné.</p>
 
     <div class="timeline-cols">
       <div class="reveal">
-        <div class="skill-group-title"><i class="fa-solid fa-graduation-cap"></i> Formation</div>
+        <div class="skill-group-title"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="formationSectionEducation">Formation</span></div>
         <div class="timeline">
           <div class="timeline-item">
-            <span class="timeline-date">Depuis 2025</span>
-            <h4>Licence 3 — Génie Logiciel</h4>
-            <span class="org">Institut Africain d'Informatique (IAI)</span>
-            <p>Poursuite du cursus ingénieur, spécialisation développement logiciel et IA.</p>
+            <span class="timeline-date" data-i18n="formationDate1">Depuis 2025</span>
+            <h4 data-i18n="formationDegree1">Licence 3 — Génie Logiciel</h4>
+            <span class="org" data-i18n="formationSchool1">Institut Africain d'Informatique (IAI)</span>
+            <p data-i18n="formationDesc1">Poursuite du cursus ingénieur, spécialisation développement logiciel et IA.</p>
           </div>
           <div class="timeline-item">
-            <span class="timeline-date">Octobre 2025</span>
-            <h4>DTS — Diplôme de Technicien Supérieur</h4>
-            <span class="org">Institut Africain d'Informatique (IAI)</span>
-            <p>Programmation orientée objet, développement web et mobile, bases de données, réseaux informatiques.</p>
-            <span class="badge">MENTION BIEN</span>
+            <span class="timeline-date" data-i18n="formationDate2">Octobre 2025</span>
+            <h4 data-i18n="formationDegree2">DTS — Diplôme de Technicien Supérieur</h4>
+            <span class="org" data-i18n="formationSchool2">Institut Africain d'Informatique (IAI)</span>
+            <p data-i18n="formationDesc2">Programmation orientée objet, développement web et mobile, bases de données, réseaux informatiques.</p>
+            <span class="badge" data-i18n="formationBadge2">MENTION BIEN</span>
           </div>
           <div class="timeline-item">
-            <span class="timeline-date">Juillet 2023</span>
-            <h4>Baccalauréat D</h4>
-            <span class="org">Collège privé laïc Le Paradis des Anges, Kribi</span>
-            <p>Sciences de la vie et de la terre, chimie, physique, mathématiques, informatique.</p>
-            <span class="badge">MENTION ASSEZ BIEN</span>
+            <span class="timeline-date" data-i18n="formationDate3">Juillet 2023</span>
+            <h4 data-i18n="formationDegree3">Baccalauréat D</h4>
+            <span class="org" data-i18n="formationSchool3">Collège privé laïc Le Paradis des Anges, Kribi</span>
+            <p data-i18n="formationDesc3">Sciences de la vie et de la terre, chimie, physique, mathématiques, informatique.</p>
+            <span class="badge" data-i18n="formationBadge3">MENTION ASSEZ BIEN</span>
           </div>
         </div>
       </div>
 
       <div class="reveal reveal-delay-1">
-        <div class="skill-group-title"><i class="fa-solid fa-briefcase"></i> Expérience</div>
+        <div class="skill-group-title"><i class="fa-solid fa-briefcase"></i> <span data-i18n="formationSectionExperience">Expérience</span></div>
         <div class="timeline">
           <div class="timeline-item">
-            <span class="timeline-date">Juil. — Sept. 2025</span>
-            <h4>Stage académique</h4>
-            <span class="org">Welldone & Co Entertainment</span>
-            <p>Développement d'un projet informatique personnel, de la conception à la mise en œuvre, en appliquant les méthodes apprises en formation.</p>
+            <span class="timeline-date" data-i18n="experienceDate1">Juil. — Sept. 2025</span>
+            <h4 data-i18n="experienceTitle1">Stage académique</h4>
+            <span class="org" data-i18n="experienceOrg1">Welldone & Co Entertainment</span>
+            <p data-i18n="experienceDesc1">Développement d'un projet informatique personnel, de la conception à la mise en œuvre, en appliquant les méthodes apprises en formation.</p>
           </div>
           <div class="timeline-item">
-            <span class="timeline-date">Mai — Juin 2024</span>
-            <h4>Stage d'initiation professionnelle</h4>
-            <span class="org">Port Autonome de Kribi</span>
-            <p>Gestion de transactions multiples via MySQL/PostgreSQL et rédaction de documents techniques au sein du service informatique.</p>
+            <span class="timeline-date" data-i18n="experienceDate2">Mai — Juin 2024</span>
+            <h4 data-i18n="experienceTitle2">Stage d'initiation professionnelle</h4>
+            <span class="org" data-i18n="experienceOrg2">Port Autonome de Kribi</span>
+            <p data-i18n="experienceDesc2">Gestion de transactions multiples via MySQL/PostgreSQL et rédaction de documents techniques au sein du service informatique.</p>
           </div>
           <div class="timeline-item">
-            <span class="timeline-date">Août — Sept. 2023</span>
-            <h4>Stage d'initiation professionnelle</h4>
-            <span class="org">Communauté Urbaine de Kribi</span>
-            <p>Administration de bases de données du département des recettes municipales et rédaction de documents techniques.</p>
+            <span class="timeline-date" data-i18n="experienceDate3">Août — Sept. 2023</span>
+            <h4 data-i18n="experienceTitle3">Stage d'initiation professionnelle</h4>
+            <span class="org" data-i18n="experienceOrg3">Communauté Urbaine de Kribi</span>
+            <p data-i18n="experienceDesc3">Administration de bases de données du département des recettes municipales et rédaction de documents techniques.</p>
           </div>
         </div>
       </div>
@@ -1029,47 +1035,35 @@ footer{
      ============================================================ -->
 <section class="section-pad" id="projects" style="background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
-    <span class="eyebrow reveal">FIG. 04 <span class="tag">— Projets</span></span>
-    <h2 class="section-title reveal">Projets sélectionnés</h2>
-    <p class="section-sub reveal">Trois projets qui reflètent mon approche : comprendre le besoin, structurer les données, livrer une interface claire.</p>
+    <span class="eyebrow reveal">FIG. 04 <span class="tag">— <span data-i18n="projectsTag">Projets</span></span></span>
+    <h2 class="section-title reveal" data-i18n="projectsTitle">Projets sélectionnés</h2>
+    <p class="section-sub reveal" data-i18n="projectsSubtitle">Trois projets qui reflètent mon approche : comprendre le besoin, structurer les données, livrer une interface claire.</p>
 
     <div class="projects-grid">
       <div class="project-card reveal">
         <div class="project-thumb"><span class="project-ref">REF. 01</span><i class="fa-solid fa-earth-africa"></i></div>
         <div class="project-body">
-          <h4>CultureCamer</h4>
-          <p>Plateforme de valorisation du patrimoine culturel camerounais — traditions, langues et savoir-faire régionaux réunis en un espace numérique.</p>
+          <h4 data-i18n="project1Title">CultureCamer</h4>
+          <p data-i18n="project1Desc">Plateforme de valorisation du patrimoine culturel camerounais — traditions, langues et savoir-faire régionaux réunis en un espace numérique.</p>
           <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-          <div class="project-links">
-            <a href="#"><i class="fa-brands fa-github"></i> Code source</a>
-            <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Démo</a>
-          </div>
         </div>
       </div>
 
       <div class="project-card reveal reveal-delay-1">
         <div class="project-thumb"><span class="project-ref">REF. 02</span><i class="fa-solid fa-people-group"></i></div>
         <div class="project-body">
-          <h4>TutoLink</h4>
-          <p>Application de mise en relation entre étudiants et tuteurs, pensée pour simplifier l'organisation de séances d'accompagnement scolaire.</p>
+          <h4 data-i18n="project2Title">TutoLink</h4>
+          <p data-i18n="project2Desc">Application de mise en relation entre étudiants et tuteurs, pensée pour simplifier l'organisation de séances d'accompagnement scolaire.</p>
           <div class="project-stack"><span>Python</span><span>SQL</span><span>UML</span></div>
-          <div class="project-links">
-            <a href="#"><i class="fa-brands fa-github"></i> Code source</a>
-            <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Démo</a>
-          </div>
         </div>
       </div>
 
       <div class="project-card reveal reveal-delay-2">
         <div class="project-thumb"><span class="project-ref">REF. 03</span><i class="fa-solid fa-wallet"></i></div>
         <div class="project-body">
-          <h4>Gestion des Finances Personnelles</h4>
-          <p>Outil de suivi de revenus et de dépenses avec base de données relationnelle, conçu selon une modélisation Merise complète.</p>
+          <h4 data-i18n="project3Title">Gestion des Finances Personnelles</h4>
+          <p data-i18n="project3Desc">Outil de suivi de revenus et de dépenses avec base de données relationnelle, conçu selon une modélisation Merise complète.</p>
           <div class="project-stack"><span>Java</span><span>MySQL</span><span>Merise</span></div>
-          <div class="project-links">
-            <a href="#"><i class="fa-brands fa-github"></i> Code source</a>
-            <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Démo</a>
-          </div>
         </div>
       </div>
     </div>
@@ -1081,42 +1075,42 @@ footer{
      ============================================================ -->
 <section class="section-pad" id="services">
   <div class="container">
-    <span class="eyebrow reveal">FIG. 05 <span class="tag">— Services</span></span>
-    <h2 class="section-title reveal">Ce que je peux faire</h2>
-    <p class="section-sub reveal">Les domaines sur lesquels je peux apporter une contribution concrète, dès aujourd'hui.</p>
+    <span class="eyebrow reveal">FIG. 05 <span class="tag">— <span data-i18n="servicesTag">Services</span></span></span>
+    <h2 class="section-title reveal" data-i18n="servicesTitle">Ce que je peux faire</h2>
+    <p class="section-sub reveal" data-i18n="servicesSubtitle">Les domaines sur lesquels je peux apporter une contribution concrète, dès aujourd'hui.</p>
   </div>
 
   <div class="container">
     <div class="services-grid reveal">
       <div class="service-cell">
         <i class="fa-solid fa-display"></i>
-        <h4>Développement Web</h4>
-        <p>Interfaces claires et responsives, construites avec des bases HTML/CSS/JS solides.</p>
+        <h4 data-i18n="serviceWebTitle">Développement Web</h4>
+        <p data-i18n="serviceWebDesc">Interfaces claires et responsives, construites avec des bases HTML/CSS/JS solides.</p>
       </div>
       <div class="service-cell">
         <i class="fa-solid fa-mobile-screen"></i>
-        <h4>Développement Mobile</h4>
-        <p>Applications pensées pour l'usage réel, du besoin utilisateur jusqu'au prototype.</p>
+        <h4 data-i18n="serviceMobileTitle">Développement Mobile</h4>
+        <p data-i18n="serviceMobileDesc">Applications pensées pour l'usage réel, du besoin utilisateur jusqu'au prototype.</p>
       </div>
       <div class="service-cell">
         <i class="fa-solid fa-server"></i>
-        <h4>Développement Backend</h4>
-        <p>Logique métier en Python et Java, connectée à des bases de données fiables.</p>
+        <h4 data-i18n="serviceBackendTitle">Développement Backend</h4>
+        <p data-i18n="serviceBackendDesc">Logique métier en Python et Java, connectée à des bases de données fiables.</p>
       </div>
       <div class="service-cell">
         <i class="fa-solid fa-sitemap"></i>
-        <h4>Conception UML & Merise</h4>
-        <p>Modélisation rigoureuse en amont, pour des systèmes faciles à faire évoluer.</p>
+        <h4 data-i18n="serviceUmlTitle">Conception UML & Merise</h4>
+        <p data-i18n="serviceUmlDesc">Modélisation rigoureuse en amont, pour des systèmes faciles à faire évoluer.</p>
       </div>
       <div class="service-cell">
         <i class="fa-solid fa-database"></i>
-        <h4>Bases de données</h4>
-        <p>Conception, administration et optimisation sous MySQL et PostgreSQL.</p>
+        <h4 data-i18n="serviceDbTitle">Bases de données</h4>
+        <p data-i18n="serviceDbDesc">Conception, administration et optimisation sous MySQL et PostgreSQL.</p>
       </div>
       <div class="service-cell">
         <i class="fa-solid fa-brain"></i>
-        <h4>Intelligence Artificielle</h4>
-        <p>Veille active et premiers projets d'intégration d'outils et de modèles IA.</p>
+        <h4 data-i18n="serviceAiTitle">Intelligence Artificielle</h4>
+        <p data-i18n="serviceAiDesc">Veille active et premiers projets d'intégration d'outils et de modèles IA.</p>
       </div>
     </div>
   </div>
@@ -1135,7 +1129,7 @@ footer{
       <div class="reveal">
         <div class="contact-info-item">
           <i class="fa-solid fa-envelope"></i>
-          <div><div class="k">Email</div><a class="v" href="mailto:gurvanmhl@gmail.com">gurvanmhl@gmail.com</a></div>
+          <div><div class="k" data-i18n="contactEmailInfo">Email</div><a class="v" href="mailto:gurvanmhl@gmail.com">gurvanmhl@gmail.com</a></div>
         </div>
         <div class="contact-info-item">
           <i class="fa-solid fa-phone"></i>
@@ -1143,12 +1137,12 @@ footer{
         </div>
         <div class="contact-info-item">
           <i class="fa-solid fa-location-dot"></i>
-          <div><div class="k" data-i18n="contactLocationLabel">Localisation</div><span class="v">Damas, Yaoundé — Cameroun</span></div>
+          <div><div class="k" data-i18n="contactLocationLabel">Localisation</div><span class="v" data-i18n="contactLocationValue">Damas, Yaoundé — Cameroun</span></div>
         </div>
         <div class="contact-socials">
-          <a href="https://wa.me/237692745692" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="mailto:gurvanmhl@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-          <a href="https://github.com/gurvan-dev77" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://wa.me/237692745692" target="_blank" rel="noopener" data-i18n-aria="socialWa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:gurvanmhl@gmail.com" data-i18n-aria="socialEmail" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://github.com/gurvan-dev777/Projet-personnel" target="_blank" rel="noopener" data-i18n-aria="socialGitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         </div>
       </div>
 
@@ -1192,6 +1186,8 @@ footer{
 <script>
 const translations = {
   fr: {
+    pageTitle: 'Mahele Honoré Gurvan — Développeur Web Full Stack',
+    pageDescription: 'Portfolio de Mahele Honoré Gurvan, développeur web full stack passionné par les technologies web et les bases de données.',
     navAbout: 'À propos',
     navSkills: 'Compétences',
     navParcours: 'Parcours',
@@ -1200,6 +1196,9 @@ const translations = {
     navContact: 'Contact',
     cvBtn: 'Télécharger le CV',
     themeLabel: 'Mode sombre',
+    langToggleAria: 'Passer la langue en anglais',
+    themeToggleAria: 'Basculer vers le thème clair',
+    navMenuAria: 'Ouvrir le menu',
     heroRole: 'Développeur Web Full Stack passionné par les technologies web et les bases de données.',
     heroLede: 'Je transforme des idées en solutions numériques concrètes : applications web, bases de données structurées et modèles conçus avec rigueur (UML, Merise). Curieux, méthodique, prêt à contribuer à de vrais projets.',
     heroProjectBtn: 'Voir mes projets',
@@ -1208,21 +1207,107 @@ const translations = {
     heroStatProjects: 'Projets réalisés',
     heroStatTech: 'Technologies',
     heroStatStages: 'Stages effectués',
+    heroStatus: 'STATUT : OUVERT AUX OPPORTUNITÉS',
+    heroRef: 'REF. MHG-01',
+    heroScrollCue: 'SCROLL',
     aboutTag: 'À propos',
     aboutTitle: 'Qui je suis',
     aboutSubtitle: 'Un aperçu rapide de mon profil, en dehors des lignes de code.',
     aboutNameLabel: 'NOM',
     aboutLevelLabel: 'NIVEAU',
+    aboutLevelValue: 'Licence 3 — Génie Logiciel',
     aboutSchoolLabel: 'ÉTABLISSEMENT',
+    aboutSchoolValue: 'Institut Africain d\'Informatique',
     aboutLocationLabel: 'LOCALISATION',
+    aboutLocationValue: 'Yaoundé, Cameroun',
     aboutLanguagesLabel: 'LANGUES',
+    aboutLanguagesValue: 'Français, Anglais',
     aboutAvailabilityLabel: 'DISPONIBILITÉ',
     aboutAvailabilityValue: 'Stage — dès maintenant',
+    aboutParagraph1: 'Je suis <strong>Mahele Honoré Gurvan</strong>, étudiant en Licence 3 Génie Logiciel à l\'Institut Africain d\'Informatique (IAI), à Yaoundé. Le développement logiciel et l\'intelligence artificielle m\'intéressent particulièrement : j\'aime comprendre comment une idée devient une application utilisable, de la modélisation à la mise en production.',
+    aboutParagraph2: 'Mes bases en <strong>Python, Java et SQL</strong> se sont construites à travers des stages concrets — gestion de bases de données pour un port autonome, administration de recettes municipales, développement de projets personnels — et non uniquement en salle de classe.',
+    aboutParagraph3: 'Je recherche aujourd\'hui un <strong>stage</strong> qui me permette de mettre ces compétences au service de projets réels, avec la rigueur et l\'adaptabilité que mes expériences m\'ont apprises.',
+    aboutInterestTeam: 'Esprit d\'équipe',
+    aboutInterestAnalysis: 'Analyse & résolution',
+    aboutInterestSport: 'Sport',
+    aboutInterestRead: 'Lecture',
+    aboutInterestInnovation: 'Innovation',
+    skillsTag: 'Compétences',
+    skillsTitle: 'Ce que je maîtrise',
+    skillsSubtitle: 'Des fondations solides en programmation et en conception de bases de données, complétées par une pratique régulière du développement web.',
+    skillsGroupWeb: 'Langages & Web',
+    skillsGroupData: 'Données & Conception',
+    skillLevelAdvanced: 'AVANCÉ',
+    skillLevelIntermediatePlus: 'INTERMÉDIAIRE+',
+    skillLevelIntermediate: 'INTERMÉDIAIRE',
+    statsProjects: 'Grands projets réalisés',
+    statsTech: 'Technologies maîtrisées',
+    statsStages: 'Stages effectués',
+    statsMotivation: '% Motivation',
+    formationTag: 'Parcours',
+    formationTitle: 'Formation & Expériences',
+    formationSubtitle: 'Mon itinéraire académique et les stages qui l\'ont accompagné.',
+    formationSectionEducation: 'Formation',
+    formationSectionExperience: 'Expérience',
+    formationDate1: 'Depuis 2025',
+    formationDegree1: 'Licence 3 — Génie Logiciel',
+    formationSchool1: 'Institut Africain d\'Informatique (IAI)',
+    formationDesc1: 'Poursuite du cursus ingénieur, spécialisation développement logiciel et IA.',
+    formationDate2: 'Octobre 2025',
+    formationDegree2: 'DTS — Diplôme de Technicien Supérieur',
+    formationSchool2: 'Institut Africain d\'Informatique (IAI)',
+    formationDesc2: 'Programmation orientée objet, développement web et mobile, bases de données, réseaux informatiques.',
+    formationBadge2: 'MENTION BIEN',
+    formationDate3: 'Juillet 2023',
+    formationDegree3: 'Baccalauréat D',
+    formationSchool3: 'Collège privé laïc Le Paradis des Anges, Kribi',
+    formationDesc3: 'Sciences de la vie et de la terre, chimie, physique, mathématiques, informatique.',
+    formationBadge3: 'MENTION ASSEZ BIEN',
+    experienceDate1: 'Juil. — Sept. 2025',
+    experienceTitle1: 'Stage académique',
+    experienceOrg1: 'Welldone & Co Entertainment',
+    experienceDesc1: 'Développement d\'un projet informatique personnel, de la conception à la mise en œuvre, en appliquant les méthodes apprises en formation.',
+    experienceDate2: 'Mai — Juin 2024',
+    experienceTitle2: 'Stage d\'initiation professionnelle',
+    experienceOrg2: 'Port Autonome de Kribi',
+    experienceDesc2: 'Gestion de transactions multiples via MySQL/PostgreSQL et rédaction de documents techniques au sein du service informatique.',
+    experienceDate3: 'Août — Sept. 2023',
+    experienceTitle3: 'Stage d\'initiation professionnelle',
+    experienceOrg3: 'Communauté Urbaine de Kribi',
+    experienceDesc3: 'Administration de bases de données du département des recettes municipales et rédaction de documents techniques.',
+    projectsTag: 'Projets',
+    projectsTitle: 'Projets sélectionnés',
+    projectsSubtitle: 'Trois projets qui reflètent mon approche : comprendre le besoin, structurer les données, livrer une interface claire.',
+    project1Title: 'CultureCamer',
+    project1Desc: 'Plateforme de valorisation du patrimoine culturel camerounais — traditions, langues et savoir-faire régionaux réunis en un espace numérique.',
+    project2Title: 'TutoLink',
+    project2Desc: 'Application de mise en relation entre étudiants et tuteurs, pensée pour simplifier l\'organisation de séances d\'accompagnement scolaire.',
+    project3Title: 'Gestion des Finances Personnelles',
+    project3Desc: 'Outil de suivi de revenus et de dépenses avec base de données relationnelle, conçu selon une modélisation Merise complète.',
+    projectSource: 'Code source',
+    projectDemo: 'Démo',
+    servicesTag: 'Services',
+    servicesTitle: 'Ce que je peux faire',
+    servicesSubtitle: 'Les domaines sur lesquels je peux apporter une contribution concrète, dès aujourd\'hui.',
+    serviceWebTitle: 'Développement Web',
+    serviceWebDesc: 'Interfaces claires et responsives, construites avec des bases HTML/CSS/JS solides.',
+    serviceMobileTitle: 'Développement Mobile',
+    serviceMobileDesc: 'Applications pensées pour l\'usage réel, du besoin utilisateur jusqu\'au prototype.',
+    serviceBackendTitle: 'Développement Backend',
+    serviceBackendDesc: 'Logique métier en Python et Java, connectée à des bases de données fiables.',
+    serviceUmlTitle: 'Conception UML & Merise',
+    serviceUmlDesc: 'Modélisation rigoureuse en amont, pour des systèmes faciles à faire évoluer.',
+    serviceDbTitle: 'Bases de données',
+    serviceDbDesc: 'Conception, administration et optimisation sous MySQL et PostgreSQL.',
+    serviceAiTitle: 'Intelligence Artificielle',
+    serviceAiDesc: 'Veille active et premiers projets d\'intégration d\'outils et de modèles IA.',
     contactTag: 'Contact',
     contactTitle: 'Travaillons ensemble',
     contactSubtitle: 'Une opportunité de stage, une question, une collaboration ? Écrivez-moi — je réponds rapidement.',
+    contactEmailInfo: 'Email',
     contactPhoneLabel: 'Téléphone',
     contactLocationLabel: 'Localisation',
+    contactLocationValue: 'Damas, Yaoundé — Cameroun',
     contactNameLabel: 'Nom complet',
     contactEmailLabel: 'Adresse email',
     contactMessageLabel: 'Message',
@@ -1231,10 +1316,15 @@ const translations = {
     contactMessagePlaceholder: 'Décrivez votre projet ou opportunité...',
     contactSendBtn: 'Envoyer le message',
     contactFormNote: '// Ce formulaire est prêt côté visuel — connectez-le à Formspree, EmailJS ou votre backend pour l\'activer.',
+    socialWa: 'Contacter sur WhatsApp',
+    socialEmail: 'Envoyer un email',
+    socialGitHub: 'Voir le profil GitHub',
     footerRights: 'Tous droits réservés.',
     footerCrafted: 'Conçu & codé par'
   },
   en: {
+    pageTitle: 'Mahele Honoré Gurvan — Full Stack Web Developer',
+    pageDescription: 'Portfolio of Mahele Honoré Gurvan, a full stack web developer passionate about web technologies and databases.',
     navAbout: 'About',
     navSkills: 'Skills',
     navParcours: 'Journey',
@@ -1243,6 +1333,9 @@ const translations = {
     navContact: 'Contact',
     cvBtn: 'Download CV',
     themeLabel: 'Light mode',
+    langToggleAria: 'Switch language to French',
+    themeToggleAria: 'Switch to dark theme',
+    navMenuAria: 'Open menu',
     heroRole: 'Full Stack Web Developer passionate about web technologies and databases.',
     heroLede: 'I turn ideas into concrete digital solutions: web applications, structured databases and rigorously designed models (UML, Merise). Curious, methodical, ready to contribute to real projects.',
     heroProjectBtn: 'See my projects',
@@ -1251,21 +1344,107 @@ const translations = {
     heroStatProjects: 'Projects completed',
     heroStatTech: 'Technologies',
     heroStatStages: 'Internships completed',
+    heroStatus: 'STATUS: OPEN TO OPPORTUNITIES',
+    heroRef: 'REF. MHG-01',
+    heroScrollCue: 'SCROLL',
     aboutTag: 'About',
     aboutTitle: 'Who I am',
     aboutSubtitle: 'A quick overview of my profile, beyond the code lines.',
     aboutNameLabel: 'NAME',
     aboutLevelLabel: 'LEVEL',
+    aboutLevelValue: 'Year 3 — Software Engineering',
     aboutSchoolLabel: 'SCHOOL',
+    aboutSchoolValue: 'African Institute of Informatics',
     aboutLocationLabel: 'LOCATION',
+    aboutLocationValue: 'Yaoundé, Cameroon',
     aboutLanguagesLabel: 'LANGUAGES',
+    aboutLanguagesValue: 'French, English',
     aboutAvailabilityLabel: 'AVAILABILITY',
-    aboutAvailabilityValue: 'Stage — available now',
+    aboutAvailabilityValue: 'Internship — available now',
+    aboutParagraph1: 'I am <strong>Mahele Honoré Gurvan</strong>, a third-year student in Software Engineering at the African Institute of Informatics (IAI) in Yaoundé. I am particularly interested in software development and artificial intelligence: I enjoy understanding how an idea becomes a usable application, from modeling to production.',
+    aboutParagraph2: 'My foundations in <strong>Python, Java and SQL</strong> were built through real internships — database management for an autonomous port, municipal revenue administration, personal project development — not only in the classroom.',
+    aboutParagraph3: 'Today, I am looking for an <strong>internship</strong> that allows me to put these skills to work on real projects, with the rigor and adaptability my experiences have taught me.',
+    aboutInterestTeam: 'Teamwork',
+    aboutInterestAnalysis: 'Analysis & problem solving',
+    aboutInterestSport: 'Sport',
+    aboutInterestRead: 'Reading',
+    aboutInterestInnovation: 'Innovation',
+    skillsTag: 'Skills',
+    skillsTitle: 'What I master',
+    skillsSubtitle: 'Solid foundations in programming and database design, complemented by regular practice in web development.',
+    skillsGroupWeb: 'Languages & Web',
+    skillsGroupData: 'Data & Design',
+    skillLevelAdvanced: 'ADVANCED',
+    skillLevelIntermediatePlus: 'INTERMEDIATE+',
+    skillLevelIntermediate: 'INTERMEDIATE',
+    statsProjects: 'Major projects completed',
+    statsTech: 'Technologies mastered',
+    statsStages: 'Internships completed',
+    statsMotivation: '% Motivation',
+    formationTag: 'Journey',
+    formationTitle: 'Education & Experience',
+    formationSubtitle: 'My academic path and the internships that shaped it.',
+    formationSectionEducation: 'Education',
+    formationSectionExperience: 'Experience',
+    formationDate1: 'Since 2025',
+    formationDegree1: 'Year 3 — Software Engineering',
+    formationSchool1: 'African Institute of Informatics (IAI)',
+    formationDesc1: 'Continuing the engineering curriculum, specializing in software development and AI.',
+    formationDate2: 'October 2025',
+    formationDegree2: 'Higher Technician Diploma',
+    formationSchool2: 'African Institute of Informatics (IAI)',
+    formationDesc2: 'Object-oriented programming, web and mobile development, databases, computer networks.',
+    formationBadge2: 'WITH DISTINCTION',
+    formationDate3: 'July 2023',
+    formationDegree3: 'Baccalaureate D',
+    formationSchool3: 'Private secular college Le Paradis des Anges, Kribi',
+    formationDesc3: 'Life and earth sciences, chemistry, physics, mathematics, computer science.',
+    formationBadge3: 'FAIRLY GOOD',
+    experienceDate1: 'Jul. — Sept. 2025',
+    experienceTitle1: 'Academic internship',
+    experienceOrg1: 'Welldone & Co Entertainment',
+    experienceDesc1: 'Developed a personal computer project, from design to implementation, applying the methods learned during training.',
+    experienceDate2: 'May — June 2024',
+    experienceTitle2: 'Professional initiation internship',
+    experienceOrg2: 'Autonomous Port of Kribi',
+    experienceDesc2: 'Managed multiple transactions through MySQL/PostgreSQL and drafted technical documents within the IT department.',
+    experienceDate3: 'August — Sept. 2023',
+    experienceTitle3: 'Professional initiation internship',
+    experienceOrg3: 'Urban Community of Kribi',
+    experienceDesc3: 'Administered the municipal revenue department databases and wrote technical documents.',
+    projectsTag: 'Projects',
+    projectsTitle: 'Selected projects',
+    projectsSubtitle: 'Three projects that reflect my approach: understand the need, structure the data, deliver a clear interface.',
+    project1Title: 'CultureCamer',
+    project1Desc: 'Platform for promoting Cameroonian cultural heritage — traditions, languages and regional know-how gathered in one digital space.',
+    project2Title: 'TutoLink',
+    project2Desc: 'Application connecting students and tutors, designed to simplify the organization of academic support sessions.',
+    project3Title: 'Personal Finance Management',
+    project3Desc: 'Tool for tracking income and expenses with a relational database, designed according to a complete Merise model.',
+    projectSource: 'Source code',
+    projectDemo: 'Demo',
+    servicesTag: 'Services',
+    servicesTitle: 'What I can do',
+    servicesSubtitle: 'The areas where I can bring concrete value from today onward.',
+    serviceWebTitle: 'Web development',
+    serviceWebDesc: 'Clear and responsive interfaces built on solid HTML/CSS/JS foundations.',
+    serviceMobileTitle: 'Mobile development',
+    serviceMobileDesc: 'Applications designed for real use, from user need to prototype.',
+    serviceBackendTitle: 'Backend development',
+    serviceBackendDesc: 'Business logic in Python and Java, connected to reliable databases.',
+    serviceUmlTitle: 'UML & Merise design',
+    serviceUmlDesc: 'Rigorous modeling upfront, for systems that are easy to evolve.',
+    serviceDbTitle: 'Databases',
+    serviceDbDesc: 'Design, administration and optimization with MySQL and PostgreSQL.',
+    serviceAiTitle: 'Artificial Intelligence',
+    serviceAiDesc: 'Active monitoring and early projects integrating AI tools and models.',
     contactTag: 'Contact',
     contactTitle: 'Let\'s work together',
-    contactSubtitle: 'An internship opportunity, a question, a collaboration? Write to me — I reply quickly.',
+    contactSubtitle: 'An internship opportunity, a question, a collaboration? Write to me — I respond quickly.',
+    contactEmailInfo: 'Email',
     contactPhoneLabel: 'Phone',
     contactLocationLabel: 'Location',
+    contactLocationValue: 'Damas, Yaoundé — Cameroon',
     contactNameLabel: 'Full name',
     contactEmailLabel: 'Email address',
     contactMessageLabel: 'Message',
@@ -1274,6 +1453,9 @@ const translations = {
     contactMessagePlaceholder: 'Describe your project or opportunity...',
     contactSendBtn: 'Send message',
     contactFormNote: '// This form is ready visually — connect it to Formspree, EmailJS or your backend to activate it.',
+    socialWa: 'Contact on WhatsApp',
+    socialEmail: 'Send an email',
+    socialGitHub: 'View GitHub profile',
     footerRights: 'All rights reserved.',
     footerCrafted: 'Designed & coded by'
   }
@@ -1282,18 +1464,33 @@ const translations = {
 const langToggle = document.getElementById('langToggle');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
+const navToggle = document.getElementById('navToggle');
 let currentLang = 'fr';
 
 function applyTranslations() {
   const dict = translations[currentLang];
   document.documentElement.lang = currentLang;
+  document.title = dict.pageTitle;
+  const descriptionMeta = document.querySelector('meta[name="description"]');
+  if (descriptionMeta) descriptionMeta.setAttribute('content', dict.pageDescription);
+
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key]) el.textContent = dict[key];
+    if (dict[key]) {
+      if (el.hasAttribute('data-i18n-html')) {
+        el.innerHTML = dict[key];
+      } else {
+        el.textContent = dict[key];
+      }
+    }
   });
   document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key]) el.setAttribute('placeholder', dict[key]);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-aria');
+    if (dict[key]) el.setAttribute('aria-label', dict[key]);
   });
   langToggle.textContent = currentLang === 'fr' ? 'EN' : 'FR';
   langToggle.setAttribute('aria-label', currentLang === 'fr' ? 'Switch language to English' : 'Basculer la langue en français');
@@ -1301,6 +1498,8 @@ function applyTranslations() {
   themeIcon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
   const themeText = isLight ? (currentLang === 'fr' ? 'Mode clair' : 'Light mode') : (currentLang === 'fr' ? 'Mode sombre' : 'Dark mode');
   themeToggle.querySelector('span').textContent = themeText;
+  themeToggle.setAttribute('aria-label', isLight ? (currentLang === 'fr' ? 'Passer au thème sombre' : 'Switch to dark theme') : (currentLang === 'fr' ? 'Passer au thème clair' : 'Switch to light theme'));
+  navToggle.setAttribute('aria-label', currentLang === 'fr' ? 'Ouvrir le menu' : 'Open menu');
 }
 
 langToggle.addEventListener('click', () => {
@@ -1347,7 +1546,6 @@ window.addEventListener('scroll', () => {
 backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* Mobile nav toggle */
-const navToggle = document.getElementById('navToggle');
 const navLinksEl = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinksEl.classList.toggle('open'));
 navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinksEl.classList.remove('open')));
@@ -1458,7 +1656,6 @@ window.addEventListener('scroll', () => {
 backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* Mobile nav toggle */
-const navToggle = document.getElementById('navToggle');
 const navLinksEl = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinksEl.classList.toggle('open'));
 navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinksEl.classList.remove('open')));
