@@ -371,20 +371,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   filter:grayscale(15%) contrast(1.05);
 }
 .hero-photo img{ width:100%; height:auto; display:block; }
-.scan-line{
-  position:absolute;
-  left:0; right:0; height:2px;
-  background:linear-gradient(90deg, transparent, var(--copper), transparent);
-  box-shadow:0 0 12px var(--copper);
-  animation:scan 3.5s ease-in-out infinite;
-  opacity:0.85;
-}
-@keyframes scan{
-  0%{ top:0; opacity:0; }
-  10%{ opacity:0.9; }
-  90%{ opacity:0.9; }
-  100%{ top:100%; opacity:0; }
-}
 .photo-caption{
   font-family:var(--f-mono);
   font-size:10.5px;
@@ -804,9 +790,9 @@ footer{
 <section class="hero" id="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="hero-kicker reveal">// Yaoundé, Cameroun — Disponible pour un stage</span>
+      <span class="hero-kicker reveal"></span>
       <h1 class="reveal reveal-delay-1">Mahele Honoré<br><span class="last">Gurvan.</span></h1>
-      <p class="hero-role reveal reveal-delay-2">Élève Ingénieur en Génie Logiciel — L3, IAI<span class="cursor"></span></p>
+      <p class="hero-role reveal reveal-delay-2">Développeur Web Full Stack passionné par les technologies web et les bases de données.<span class="cursor"></span></p>
       <p class="lede reveal reveal-delay-2">Je transforme des idées en solutions numériques concrètes : applications web, bases de données structurées et modèles conçus avec rigueur (UML, Merise). Curieux, méthodique, prêt à contribuer à de vrais projets.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-diagram-project"></i> Voir mes projets</a>
@@ -1117,7 +1103,6 @@ footer{
           <a href="https://wa.me/237692745692" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           <a href="mailto:gurvanmhl@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
           <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
 
